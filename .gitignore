@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/EvaDemo-Shop/v15/.suo
+/.vs/RTSB-Shop/DesignTimeBuild
+/.vs/RTSB-Shop/v15/Server/sqlite3
+/.vs/RTSB-Shop/v15
+/EvaDemo.Shop.Contract/bin/Debug/netcoreapp2.0
+/EvaDemo.Shop.Contract/obj
+/.vs/EvaDemo-Shop/DesignTimeBuild
+/.vs/EvaDemo-Shop/v15/Server/sqlite3
+/EvaDemo.Shop.Data/bin/Debug/netcoreapp2.0
+/EvaDemo.Shop.Data/obj
+/EvaDemo.Shop.WebApp/bin/Debug/netcoreapp2.0
+/EvaDemo.Shop.WebApp/obj
+/.vs/config
