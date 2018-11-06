@@ -26,8 +26,8 @@ namespace EvaDemo.Shop.WebApp
 		{
 			services.AddMvc();
 			services.AddScoped<IProductRepo, ProductRepo>();
-			services.AddDbContext<EvaDemoShopWebAppContext>(options =>
-					options.UseSqlServer(Configuration.GetConnectionString("EvaDemoShopWebAppContext")));
+			//services.adddata<Data.DemoDataContext>(options =>
+			//		options.UseSqlServer(Configuration.GetConnectionString("ConnectingString")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

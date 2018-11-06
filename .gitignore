@@ -8,3 +8,4 @@
 */bin
 *.csproj.user
 *.suo
+/ORMCopy
