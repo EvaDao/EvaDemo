@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <RootNamespace>RTSB.Shop</RootNamespace>
+    <RootNamespace>EvaDemo.Shop</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

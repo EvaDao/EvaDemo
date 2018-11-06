@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EvaDemo.Shop.Contract\EvaDemo.Shop.Contract.csproj" />
+    <ProjectReference Include="..\EvaDemo.Shop.Data\EvaDemo.Shop.Data.csproj" />
   </ItemGroup>
 
 </Project>
