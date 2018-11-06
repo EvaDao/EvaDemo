@@ -30,8 +30,16 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a asp-area="" asp-controller="Home" asp-action="Register">Register</a></li>
 					<li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+				</ul>
+				<ul class="nav navbar-right bottom" style="margin-top:15px">
+					<li>
+						<span>
+							<a asp-area="" asp-controller="Register" asp-action="Index">Sign Up</a>
+							<span> / </span>
+							<a asp-area="" asp-controller="Login" asp-action="Index">Sign In</a>
+						</span>
+					</li>
 				</ul>
 			</div>
 		</div>

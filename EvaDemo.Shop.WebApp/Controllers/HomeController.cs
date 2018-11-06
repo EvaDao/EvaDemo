@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EvaDemo.Shop.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using EvaDemo.Shop.WebApp.Models;
+using System.Diagnostics;
 
 namespace EvaDemo.Shop.WebApp.Controllers
 {
-    public class HomeController : Controller
+	public class HomeController : Controller
     {
         public IActionResult Index()
         {
@@ -28,13 +24,6 @@ namespace EvaDemo.Shop.WebApp.Controllers
 
             return View();
 		}
-		public IActionResult Register()
-		{
-			ViewData["Message"] = "Your Register page.";
-
-			return View();
-		}
-		
 		public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

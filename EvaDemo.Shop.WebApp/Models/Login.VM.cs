@@ -2,7 +2,7 @@
 
 namespace EvaDemo.Shop.Models
 {
-	public partial class Register
+	public partial class Login
 	{
 		public partial class VM
 		{
@@ -10,8 +10,6 @@ namespace EvaDemo.Shop.Models
 			public string UserName { get; set; }
 			[Required]
 			public string Password { get; set; }
-			//[Required]
-			//public string ConfirmPassword { get; set; }
 		}
 	}
 }
