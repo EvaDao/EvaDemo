@@ -10,7 +10,7 @@ using EvaDemo.Shop.Repos;
 
 namespace EvaDemo.Shop.WebApp.Controllers
 {
-	using VM = Product.VM;
+	using M = Product;
 	public class ProductsController : Controller
 	{
 		private readonly IProductRepo _productRepo;
@@ -22,7 +22,7 @@ namespace EvaDemo.Shop.WebApp.Controllers
 
 		public IActionResult Index()
 		{
-			return View(_productRepo.List().Select(x => VM.Of(x)));
+			return View(_productRepo.List().Select(x => M.ListVM.Of(x)));
 		}
 
 		public IActionResult Details(long id)
@@ -33,7 +33,7 @@ namespace EvaDemo.Shop.WebApp.Controllers
 				return NotFound();
 			}
 
-			return View(VM.Of(product));
+			return View(M.DetailVM.Of(product));
 		}
 
 		public IActionResult Create()
@@ -63,7 +63,7 @@ namespace EvaDemo.Shop.WebApp.Controllers
 				return NotFound();
 			}
 
-			return View(VM.Of(product));
+			return View(M.DetailVM.Of(product));
 		}
 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.

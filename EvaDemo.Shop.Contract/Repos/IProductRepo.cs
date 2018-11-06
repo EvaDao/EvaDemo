@@ -5,8 +5,8 @@ namespace EvaDemo.Shop.Repos
 {
 	public interface IProductRepo
 	{
-		IEnumerable<Product> List();
-		Product Detail(long id);
+		IEnumerable<Product.List> List();
+		Product.Detail Detail(long id);
 		void Add(Product product);
 	}
 }
