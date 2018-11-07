@@ -1,35 +1,18 @@
 ﻿using EvaDemo.Shop.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EvaDemo.Shop.Repos
 {
-	public class ProductRepo : IProductRepo
+	using Data;
+
+	using M = Product;
+	public class ProductRepo : RepoBase, IProductRepo
 	{
-		private static readonly IList<Product.List> _products
-			= new List<Product.List>
-			{
-				new Product.List
-				{
-					ID=1,
-					Name="Prod1",
-					Price = Money.From(34000005),
-					Quantity=100,
-					LockedQty=20,
-					CreatedOn=DateTime.UtcNow
-				},
-				new Product.List
-				{
-					ID=11122,
-					Name="Prod123231",
-					Price = Money.From(34000005),
-					Quantity=3200,
-					LockedQty=310,
-					CreatedOn=DateTime.UtcNow
-				},
-			};
-		public IEnumerable<Product.List> List() => _products;
-		public Product.Detail Detail(long id) => new Product.Detail
+		public ProductRepo(DemoDataContext context) : base(context) { }
+		public IEnumerable<M.List> List() => Context.Product_List().Select(x => M.List.From(x));
+		public M.Detail Detail(long id) => new M.Detail
 		{
 			ID = id,
 			Description = "Prod123231",

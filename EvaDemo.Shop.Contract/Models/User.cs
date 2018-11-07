@@ -1,15 +1,11 @@
 ﻿namespace EvaDemo.Shop.Models
 {
-	using M = User.CreateSpec;
-	public partial class User
+	public sealed partial class User
 	{
-		public partial class CreateSpec
+		public enum Types
 		{
-			public static M Of() => new M();
-			public CreateSpec()
-			{
-
-			}
+			Buyer = 101,
+			ProductEditor = 102
 		}
 	}
 }

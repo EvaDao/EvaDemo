@@ -4,33 +4,10 @@ using Zebra.Data.Linq;
 
 namespace EvaDemo.Shop.Data
 {
-	public class ConnectionStringOptionsExtension : IDataContextOptionsExtension
+	public class DemoDataContext : System.Data.Linq.DataContext
 	{
-		public string ConnectionString { get; private set; }
-		public virtual ConnectionStringOptionsExtension WithConnectionString(string connectionString)
-		{
-			ConnectionString = connectionString;
-			return this;
-		}
-	}
-	public class DataContext : System.Data.Linq.DataContext, IDataContext
-	{
-		protected DataContext(DataContextOptions contextOptions)
-			: this(contextOptions.FindExtension<ConnectionStringOptionsExtension>().ConnectionString)
-		{
-
-		}
-		protected DataContext(string connection) : base(connection)
-		{
-
-		}
-	}
-	public class DemoDataContext : DataContext
-	{
-		public DemoDataContext(DataContextOptions<DemoDataContext> options)
-			: base(options)
-		{
-		}
+		public DemoDataContext(string connectingString)
+			: base(connectingString) { }
 
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User$Login", IsComposable = true)]
 		public IQueryable<User_LoginResult> User_Login([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(80)")] string pwd)
@@ -44,7 +21,7 @@ namespace EvaDemo.Shop.Data
 			return this.CreateMethodCallQuery<Product_DetailResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
 		}
 
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.Product$List", IsComposable = true)]
+		[System.Data.Linq.Mapping.Function(Name = "shop.Product$List")]
 		public IQueryable<Product_ListResult> Product_List()
 		{
 			return this.CreateMethodCallQuery<Product_ListResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
