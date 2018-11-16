@@ -9,22 +9,22 @@ namespace EvaDemo.Shop.Data
 		public DemoDataContext(string connectingString)
 			: base(connectingString) { }
 
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User$Login", IsComposable = true)]
-		public IQueryable<User_LoginResult> User_Login([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(80)")] string pwd)
-		{
-			return this.CreateMethodCallQuery<User_LoginResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, pwd);
-		}
-
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.Product$Detail", IsComposable = true)]
 		public IQueryable<Product_DetailResult> Product_Detail([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "BigInt")] System.Nullable<long> id)
 		{
 			return this.CreateMethodCallQuery<Product_DetailResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
 		}
 
-		[System.Data.Linq.Mapping.Function(Name = "shop.Product$List")]
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.Product$List", IsComposable = true)]
 		public IQueryable<Product_ListResult> Product_List()
 		{
 			return this.CreateMethodCallQuery<Product_ListResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+		}
+
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User$Login", IsComposable = true)]
+		public IQueryable<User_LoginResult> User_Login([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(80)")] string pwd)
+		{
+			return this.CreateMethodCallQuery<User_LoginResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, pwd);
 		}
 	}
 	public partial class User_LoginResult
@@ -254,6 +254,8 @@ namespace EvaDemo.Shop.Data
 
 		private int _LockedQty;
 
+		private System.DateTime _CreatedOn;
+
 		public Product_ListResult()
 		{
 		}
@@ -334,6 +336,22 @@ namespace EvaDemo.Shop.Data
 				if ((this._LockedQty != value))
 				{
 					this._LockedQty = value;
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_CreatedOn", DbType = "DateTime2 NOT NULL")]
+		public System.DateTime CreatedOn
+		{
+			get
+			{
+				return this._CreatedOn;
+			}
+			set
+			{
+				if ((this._CreatedOn != value))
+				{
+					this._CreatedOn = value;
 				}
 			}
 		}
