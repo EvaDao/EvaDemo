@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EvaDemo.Shop.Repos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using EvaDemo.Shop.WebApp.Models;
-using EvaDemo.Shop.Repos;
 
 namespace EvaDemo.Shop.WebApp
 {
@@ -26,6 +20,7 @@ namespace EvaDemo.Shop.WebApp
 			services.AddMvc();
 			services.AddScoped(x => new Data.DemoDataContext(Configuration.GetConnectionString("ConnectingString")));
 			services.AddScoped<IProductRepo, ProductRepo>();
+			services.AddScoped<IUserRepo, UserRepo>();
 		}
 
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)

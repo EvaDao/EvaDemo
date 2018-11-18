@@ -1,17 +1,32 @@
-﻿using EvaDemo.Shop.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace EvaDemo.Shop.WebApp.Controllers
 {
-	public class RegisterController : Controller
+	using EvaDemo.Shop.Repos;
+	using Models;
+	public class RegisterController : BaseController
 	{
+		private readonly IUserRepo _userRepo;
+		public RegisterController(IUserRepo userRepo)
+		{
+			_userRepo = userRepo;
+		}
+
 		public IActionResult Index()
 		{
 			return View();
 		}
 		public IActionResult RegisterSubmit(Register.VM model)
 		{
-			return View(nameof(RegisterSuccess));
+			try
+			{
+				_userRepo.Register(model.ToModel());
+				return View(nameof(RegisterSuccess));
+			}
+			catch
+			{
+				return BadRequest("Failed Register");
+			}
 		}
 		public IActionResult RegisterSuccess()
 		{

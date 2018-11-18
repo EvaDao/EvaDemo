@@ -4,8 +4,10 @@
 	{
 		public enum Types
 		{
-			Buyer = 101,
-			ProductEditor = 102
+			Customer = 1,
+			Employee = 2,
+			Partner = 3,
+			Others = 99
 		}
 	}
 }

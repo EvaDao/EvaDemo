@@ -12,19 +12,21 @@ namespace EvaDemo.Shop.Repos
 	{
 		public ProductRepo(DemoDataContext context) : base(context) { }
 		public IEnumerable<M.List> List() => Context.Product_List().Select(x => M.List.From(x));
-		public M.Detail Detail(long id) => new M.Detail
+		public M.Detail Detail(long id) => Context.Product_Detail(id).FirstOrDefault().Over(x => new M.Detail
 		{
-			ID = id,
-			Description = "Prod123231",
-			Price = Money.From(34000005),
-			Quantity = 3200,
-			LockedQty = 310,
-			CreatedOn = DateTime.UtcNow
-		};
+			ID = x.ID,
+			Description = x.Description,
+			DetailInfo = x.DetailInfo,
+			Quantity = x.TotalQty,
+			Price = Money.From(x.Price),
+		});
 
-		public void Add(Product product)
-		{
-			//_products.Add(product);
-		}
+		public void Add(M.CreateSpec product)
+			=> Context.Product_Add(product.Description, product.DetailInfo, product.Price, product.Quantity);
+
+		public void Edit(M.EditSpec product)
+			=> Context.Product_Edit(product.ID, product.Description, product.DetailInfo, product.Price, product.Quantity);
+
+		public void Delete(long id) => Context.Product_Delete(id);
 	}
 }

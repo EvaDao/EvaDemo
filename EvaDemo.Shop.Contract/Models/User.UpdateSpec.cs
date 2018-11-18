@@ -1,14 +1,17 @@
-﻿namespace EvaDemo.Shop.WebApp.Models
+﻿namespace EvaDemo.Shop.Models
 {
-	public partial class User
+	using M = User.RegisterSpec;
+	partial class User
 	{
-		public class UpdateVM
+		public partial class UpdateSpec
 		{
-			public string Name { get; set; }
+			public static M Of() => new M();
+
+			public long UserID { get; set; }
 			public string Surname { get; set; }
 			public string Phone { get; set; }
 			public string Email { get; set; }
-			public string CountryCode { get; set; }
+			public string Country { get; set; }
 			public string State { get; set; }
 			public string City { get; set; }
 			public string Address1 { get; set; }

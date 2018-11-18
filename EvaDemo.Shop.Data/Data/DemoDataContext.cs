@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System.Data.Linq;
+using System.Linq;
 using System.Reflection;
-using Zebra.Data.Linq;
 
 namespace EvaDemo.Shop.Data
 {
@@ -25,6 +25,41 @@ namespace EvaDemo.Shop.Data
 		public IQueryable<User_LoginResult> User_Login([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(80)")] string pwd)
 		{
 			return this.CreateMethodCallQuery<User_LoginResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, pwd);
+		}
+
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User#Register")]
+		public int User_Register([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(80)")] string pwd)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name, pwd);
+			return ((int)(result.ReturnValue));
+		}
+
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User#Update")]
+		public int User_Update([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "BigInt")] System.Nullable<long> userID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string surname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string phone, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(40)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Char(2)")] string country, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string state, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string city, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(100)")] string address1, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(100)")] string address2)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, surname, phone, email, country, state, city, address1, address2);
+			return ((int)(result.ReturnValue));
+		}
+
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.Product$Delete")]
+		public int Product_Delete([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "BigInt")] System.Nullable<long> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.Product$Edit")]
+		public int Product_Edit([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "BigInt")] System.Nullable<long> id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(200)")] string description, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(200)")] string detailInfo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "BigInt")] System.Nullable<long> price, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Int")] System.Nullable<int> qty)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, description, detailInfo, price, qty);
+			return ((int)(result.ReturnValue));
+		}
+
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.Product$Add")]
+		public int Product_Add([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(200)")] string description, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(200)")] string detailInfo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "BigInt")] System.Nullable<long> price, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Int")] System.Nullable<int> qty)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), description, detailInfo, price, qty);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	public partial class User_LoginResult

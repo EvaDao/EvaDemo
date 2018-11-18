@@ -10,8 +10,12 @@ namespace EvaDemo.Shop.Models
 			public static M From(iProductList i) => new M(i);
 			private List(iProductList i)
 			{
-				ID = i.ID; Name = i.Description; Price = Money.From(i.Price);
-				Quantity = i.TotalQty; LockedQty = i.LockedQty; CreatedOn = i.CreatedOn;
+				ID = i.ID;
+				Name = i.Description;
+				Price = Money.From(i.Price);
+				Quantity = i.TotalQty;
+				LockedQty = i.LockedQty;
+				CreatedOn = i.CreatedOn;
 			}
 			public long ID { get; }
 			public string Name { get; }

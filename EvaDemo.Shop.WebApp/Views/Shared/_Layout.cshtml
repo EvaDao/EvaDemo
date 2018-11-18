@@ -26,7 +26,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">EvaDemo Shop</a>
+				<a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Home</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -35,11 +35,19 @@
 				</ul>
 				<ul class="nav navbar-right bottom" style="margin-top:15px">
 					<li>
-						<span>
-							<a asp-area="" asp-controller="Register" asp-action="Index">Sign Up</a>
-							<span> / </span>
-							<a asp-area="" asp-controller="Login" asp-action="Index">Sign In</a>
-						</span>
+						@if (!ViewContext.ViewData.ContainsKey("UserContext") || ViewContext.ViewData["UserContext"] == null)
+						{
+							<span>
+								<a asp-area="" asp-controller="Register" asp-action="Index">Sign Up</a>
+								<span> / </span>
+								<a asp-area="" asp-controller="Login" asp-action="Index">Sign In</a>
+							</span>
+						}
+						else
+						{
+							<span>
+								<a asp-area="" asp-controller="Login" asp-action="Out">Logout</a>
+							</span>}
 					</li>
 				</ul>
 			</div>
