@@ -21,13 +21,19 @@ namespace EvaDemo.Shop.WebApp.Controllers
 		{
 			try
 			{
-				UserContext = _userRepo.Login(model.ToModel());
-				return Redirect("/Home/Index");
+				AppContext.Instant.SetUser(_userRepo.Login(model.ToModel()));
+				return Redirect("/Products/Index");
 			}
 			catch
 			{
 				return BadRequest("Failed Login");
 			}
+		}
+
+		public IActionResult Out()
+		{
+			AppContext.Instant.SetUser(null);
+			return Redirect("/Home/Index");
 		}
 	}
 }

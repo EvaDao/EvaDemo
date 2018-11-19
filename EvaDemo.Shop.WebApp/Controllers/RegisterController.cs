@@ -4,7 +4,6 @@ namespace EvaDemo.Shop.WebApp.Controllers
 {
 	using EvaDemo.Shop.Repos;
 	using UserVM = Models.User;
-	using User = EvaDemo.Shop.Models.User;
 	public class RegisterController : BaseController
 	{
 		private readonly IUserRepo _userRepo;

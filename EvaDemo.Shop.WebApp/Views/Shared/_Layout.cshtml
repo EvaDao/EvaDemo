@@ -35,19 +35,23 @@
 				</ul>
 				<ul class="nav navbar-right bottom" style="margin-top:15px">
 					<li>
-						@if (!ViewContext.ViewData.ContainsKey("UserContext") || ViewContext.ViewData["UserContext"] == null)
+						@if (EvaDemo.Shop.WebApp.AppContext.Instant.User == null
+						   || string.IsNullOrEmpty(EvaDemo.Shop.WebApp.AppContext.Instant.User.Name))
 						{
 							<span>
 								<a asp-area="" asp-controller="Register" asp-action="Index">Sign Up</a>
-								<span> / </span>
+								<span style="color:rosybrown"> | </span>
 								<a asp-area="" asp-controller="Login" asp-action="Index">Sign In</a>
 							</span>
 						}
 						else
 						{
 							<span>
+								<span style="font-size:large;color:saddlebrown">@EvaDemo.Shop.WebApp.AppContext.Instant.User.Name</span>
+								<span style="color:rosybrown"> | </span>
 								<a asp-area="" asp-controller="Login" asp-action="Out">Logout</a>
-							</span>}
+							</span>
+						}
 					</li>
 				</ul>
 			</div>

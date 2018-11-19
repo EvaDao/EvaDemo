@@ -1,65 +1,82 @@
 ﻿@model IEnumerable<EvaDemo.Shop.WebApp.Models.Product.ListVM>
+@using EvaDemo.Shop.Models;
+@using EvaDemo.Shop;
 
 @{
-    ViewData["Title"] = "Products";
+	ViewData["Title"] = "Products";
 }
 
 <h2>Products</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+	@if (EvaDemo.Shop.WebApp.AppContext.Instant.User != null
+			&& EvaDemo.Shop.WebApp.AppContext.Instant.User.RoleIDs.Contains(Role.Types.ProductEditor.ToInt32()))
+	{
+		<a asp-action="Create">Create New</a>
+	}
 </p>
 <table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Quantity)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LockedQty)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Currency)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedOn)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LockedQty)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Currency)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Quantity)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.LockedQty)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Price)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Currency)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CreatedOn)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Quantity)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.LockedQty)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Price)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Currency)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CreatedOn)
+				</td>
+				@if (EvaDemo.Shop.WebApp.AppContext.Instant.User != null
+				&& EvaDemo.Shop.WebApp.AppContext.Instant.User.RoleIDs.Contains(Role.Types.ProductEditor.ToInt32()))
+				{
+					<td>
+						<a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+						<a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+						<a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+					</td>
+				}
+				else
+				{
+					<td>
+						<a asp-action="Details" asp-route-id="@item.ID">Details</a>
+					</td>
+				}
+			</tr>
+		}
+	</tbody>
 </table>
