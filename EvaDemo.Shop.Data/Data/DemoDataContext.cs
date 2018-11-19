@@ -21,7 +21,7 @@ namespace EvaDemo.Shop.Data
 			return this.CreateMethodCallQuery<Product_ListResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 		}
 
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User#Info", IsComposable = true)]
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User$Info", IsComposable = true)]
 		public IQueryable<User_InfoResult> User_Info([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "BigInt")] System.Nullable<long> id)
 		{
 			return this.CreateMethodCallQuery<User_InfoResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
@@ -41,7 +41,7 @@ namespace EvaDemo.Shop.Data
 			return ((int)(result.ReturnValue));
 		}
 
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User#Update")]
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User$Update")]
 		public int User_Update([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "BigInt")] System.Nullable<long> userID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string surname, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string phone, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(40)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "Char(2)")] string country, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string state, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string city, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(100)")] string address1, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(100)")] string address2)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, surname, phone, email, country, state, city, address1, address2);
