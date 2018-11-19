@@ -12,6 +12,12 @@ Introduction:
 
 How to use:
 Step1: Change connecting string in appSettings.
+
 Step2: Start up application.
+
 Step3：Use the admin user in default script. Pwd: abc123_
+
 Step4: Log out admin, login with buyer, pwd: abc123_
+
+Comment:
+As did not use default mvc auth, no session for login. >_<
