@@ -2,6 +2,7 @@
 {
 	public sealed partial class User
 	{
+		public int ID { get; set; }
 		public enum Types
 		{
 			Customer = 1,

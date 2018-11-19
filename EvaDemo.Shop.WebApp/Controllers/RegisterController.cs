@@ -3,7 +3,8 @@
 namespace EvaDemo.Shop.WebApp.Controllers
 {
 	using EvaDemo.Shop.Repos;
-	using Models;
+	using UserVM = Models.User;
+	using User = EvaDemo.Shop.Models.User;
 	public class RegisterController : BaseController
 	{
 		private readonly IUserRepo _userRepo;
@@ -16,12 +17,12 @@ namespace EvaDemo.Shop.WebApp.Controllers
 		{
 			return View();
 		}
-		public IActionResult RegisterSubmit(Register.VM model)
+		public IActionResult RegisterSubmit(Models.Register.VM model)
 		{
 			try
 			{
-				_userRepo.Register(model.ToModel());
-				return View(nameof(RegisterSuccess));
+				var userID = _userRepo.Register(model.ToModel());
+				return Redirect($"Edit/{userID}");
 			}
 			catch
 			{
@@ -31,6 +32,41 @@ namespace EvaDemo.Shop.WebApp.Controllers
 		public IActionResult RegisterSuccess()
 		{
 			return View();
+		}
+		// GET: Users/Edit/5
+		public IActionResult Edit(int id)
+		{
+			if (id == 0)
+			{
+				return NotFound();
+			}
+
+			var user = _userRepo.Info(id);
+			if (user == null)
+			{
+				return NotFound();
+			}
+			return View(user.Over(UserVM.UpdateVM.Of));
+		}
+
+		// POST: Users/Edit/5
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult Edit(int id, [Bind("ID,Surname,Phone,Email,CountryCode,State,City,Address1,Address2")] UserVM.UpdateVM user)
+		{
+			if (id != user.ID)
+			{
+				return NotFound();
+			}
+
+			if (ModelState.IsValid)
+			{
+				_userRepo.Update(user.ToModel());
+				return View(nameof(RegisterSuccess));
+			}
+			return View(user);
 		}
 	}
 }

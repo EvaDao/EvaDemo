@@ -2,6 +2,7 @@
 using EvaDemo.Shop.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EvaDemo.Shop.WebApp.Controllers
 {
@@ -28,7 +29,7 @@ namespace EvaDemo.Shop.WebApp.Controllers
 				return NotFound();
 			}
 
-			return View(M.DetailVM.Of(product));
+			return View(product.Over(M.DetailVM.Of));
 		}
 
 		public IActionResult Create()
@@ -39,12 +40,11 @@ namespace EvaDemo.Shop.WebApp.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Create([Bind("ID,Name,Quantity,LockedQty,CreatedOn")] Product product)
+		public IActionResult Create([Bind("Description,DetailInfo,Price,Currency,Quantity")] M.AddVM product)
 		{
 			if (ModelState.IsValid)
 			{
-				//var model = new Models.Product { };
-				//_productRepo.Add(model);
+				_productRepo.Add(product.ToModel());
 				return RedirectToAction(nameof(Index));
 			}
 			return View(product);
@@ -58,15 +58,45 @@ namespace EvaDemo.Shop.WebApp.Controllers
 				return NotFound();
 			}
 
-			return View(M.DetailVM.Of(product));
+			return View(M.EditVM.Of(product));
 		}
 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Edit(long id, [Bind("ID,Name,Quantity,LockedQty,CreatedOn")] Product product)
+		public IActionResult Edit(long id, [Bind("ID,Description,DetailInfo,Price,Currency,Quantity")] M.EditVM product)
 		{
-			return View();
+			if (ModelState.IsValid)
+			{
+				_productRepo.Edit(product.ToModel());
+				return RedirectToAction(nameof(Index));
+			}
+			return View(product);
+		}
+
+		public IActionResult Delete(long id)
+		{
+			if (id == 0)
+			{
+				return NotFound();
+			}
+
+			var user = _productRepo.Detail(id);
+			if (user == null)
+			{
+				return NotFound();
+			}
+
+			return View(user.Over(M.DetailVM.Of));
+		}
+
+		// POST: Users/Delete/5
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public IActionResult DeleteConfirmed(long id)
+		{
+			_productRepo.Delete(id);
+			return RedirectToAction(nameof(Index));
 		}
 	}
 }

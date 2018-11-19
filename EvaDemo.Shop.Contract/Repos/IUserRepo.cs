@@ -3,8 +3,9 @@
 	using M = Models.User;
 	public interface IUserRepo
 	{
-		void Register(M.RegisterSpec createSpec);
+		long Register(M.RegisterSpec createSpec);
 		void Update(M.UpdateSpec spec);
 		M.Context Login(M.LoginSpec spec);
+		M.Info Info(long id);
 	}
 }

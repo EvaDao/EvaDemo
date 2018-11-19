@@ -1,12 +1,9 @@
 ﻿namespace EvaDemo.Shop.Models
 {
-	using M = User.RegisterSpec;
 	partial class User
 	{
 		public partial class UpdateSpec
 		{
-			public static M Of() => new M();
-
 			public long UserID { get; set; }
 			public string Surname { get; set; }
 			public string Phone { get; set; }

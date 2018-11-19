@@ -11,15 +11,8 @@ namespace EvaDemo.Shop.Repos
 	public class ProductRepo : RepoBase, IProductRepo
 	{
 		public ProductRepo(DemoDataContext context) : base(context) { }
-		public IEnumerable<M.List> List() => Context.Product_List().Select(x => M.List.From(x));
-		public M.Detail Detail(long id) => Context.Product_Detail(id).FirstOrDefault().Over(x => new M.Detail
-		{
-			ID = x.ID,
-			Description = x.Description,
-			DetailInfo = x.DetailInfo,
-			Quantity = x.TotalQty,
-			Price = Money.From(x.Price),
-		});
+		public IEnumerable<M.List> List() => Context.Product_List().Select(M.List.From);
+		public M.Detail Detail(long id) => Context.Product_Detail(id).FirstOrDefault().Over(M.Detail.From);
 
 		public void Add(M.CreateSpec product)
 			=> Context.Product_Add(product.Description, product.DetailInfo, product.Price, product.Quantity);

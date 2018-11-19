@@ -9,32 +9,50 @@
 <div>
     <h4>Product</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LockedQty)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LockedQty)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CreatedOn)
-        </dd>
-    </dl>
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.DetailInfo)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.DetailInfo)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Price)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Price)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Currency)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Currency)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Quantity)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Quantity)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.LockedQty)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.LockedQty)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.CreatedOn)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.CreatedOn)
+		</dd>
+	</dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |

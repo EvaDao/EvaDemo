@@ -21,16 +21,23 @@ namespace EvaDemo.Shop.Data
 			return this.CreateMethodCallQuery<Product_ListResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 		}
 
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User#Info", IsComposable = true)]
+		public IQueryable<User_InfoResult> User_Info([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "BigInt")] System.Nullable<long> id)
+		{
+			return this.CreateMethodCallQuery<User_InfoResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+		}
+
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User$Login", IsComposable = true)]
 		public IQueryable<User_LoginResult> User_Login([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(80)")] string pwd)
 		{
 			return this.CreateMethodCallQuery<User_LoginResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, pwd);
 		}
 
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User#Register")]
-		public int User_Register([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(80)")] string pwd)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name = "shop.User$Register")]
+		public int User_Register([global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(20)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "NVarChar(80)")] string pwd, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType = "BigInt")] ref System.Nullable<long> userID)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name, pwd);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name, pwd, userID);
+			userID = ((System.Nullable<long>)(result.GetParameterValue(2)));
 			return ((int)(result.ReturnValue));
 		}
 
@@ -175,6 +182,8 @@ namespace EvaDemo.Shop.Data
 
 		private int _LockedQty;
 
+		private System.DateTime _CreatedOn;
+
 		public Product_DetailResult()
 		{
 		}
@@ -271,6 +280,22 @@ namespace EvaDemo.Shop.Data
 				if ((this._LockedQty != value))
 				{
 					this._LockedQty = value;
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_CreatedOn", DbType = "DateTime2 NOT NULL")]
+		public System.DateTime CreatedOn
+		{
+			get
+			{
+				return this._CreatedOn;
+			}
+			set
+			{
+				if ((this._CreatedOn != value))
+				{
+					this._CreatedOn = value;
 				}
 			}
 		}
@@ -387,6 +412,194 @@ namespace EvaDemo.Shop.Data
 				if ((this._CreatedOn != value))
 				{
 					this._CreatedOn = value;
+				}
+			}
+		}
+	}
+
+	public partial class User_InfoResult
+	{
+
+		private long _ID;
+
+		private string _Name;
+
+		private string _Surname;
+
+		private string _Phone;
+
+		private string _Email;
+
+		private string _Country;
+
+		private string _State;
+
+		private string _City;
+
+		private string _Address1;
+
+		private string _Address2;
+
+		public User_InfoResult()
+		{
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ID", DbType = "BigInt NOT NULL")]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Name", DbType = "NVarChar(20) NOT NULL", CanBeNull = false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Surname", DbType = "NVarChar(20) NOT NULL", CanBeNull = false)]
+		public string Surname
+		{
+			get
+			{
+				return this._Surname;
+			}
+			set
+			{
+				if ((this._Surname != value))
+				{
+					this._Surname = value;
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Phone", DbType = "VarChar(20) NOT NULL", CanBeNull = false)]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this._Phone = value;
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Email", DbType = "NVarChar(40) NOT NULL", CanBeNull = false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Country", DbType = "Char(2) NOT NULL", CanBeNull = false)]
+		public string Country
+		{
+			get
+			{
+				return this._Country;
+			}
+			set
+			{
+				if ((this._Country != value))
+				{
+					this._Country = value;
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_State", DbType = "NVarChar(20) NOT NULL", CanBeNull = false)]
+		public string State
+		{
+			get
+			{
+				return this._State;
+			}
+			set
+			{
+				if ((this._State != value))
+				{
+					this._State = value;
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_City", DbType = "NVarChar(20) NOT NULL", CanBeNull = false)]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this._City = value;
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Address1", DbType = "NVarChar(100) NOT NULL", CanBeNull = false)]
+		public string Address1
+		{
+			get
+			{
+				return this._Address1;
+			}
+			set
+			{
+				if ((this._Address1 != value))
+				{
+					this._Address1 = value;
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Address2", DbType = "NVarChar(100) NOT NULL", CanBeNull = false)]
+		public string Address2
+		{
+			get
+			{
+				return this._Address2;
+			}
+			set
+			{
+				if ((this._Address2 != value))
+				{
+					this._Address2 = value;
 				}
 			}
 		}
